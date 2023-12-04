@@ -1,4 +1,4 @@
-# <!--Deals Share Service-->
+# Deals Shsre Service
 ​
 ## サイト概要
 ### サイトテーマ
