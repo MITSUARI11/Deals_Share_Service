@@ -24,6 +24,8 @@
 ​
 ## 設計書
 　後ほど作成予定。
+### 実装機能リストURL
+* https://docs.google.com/spreadsheets/d/1GVeVzbOXrSy0EWQC4kALy9gGFQNFODQdLDnO_A7wtbg/edit#gid=1898975908
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -35,8 +37,4 @@
 ## 使用素材
 * アイコンとして以下を使用。
 	* Font Awesome  URL => https://fontawesome.com/
-
-## 実装機能リストURL
-* https://docs.google.com/spreadsheets/d/1GVeVzbOXrSy0EWQC4kALy9gGFQNFODQdLDnO_A7wtbg/edit#gid=1898975908
-
 
