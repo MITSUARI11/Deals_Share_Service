@@ -1,39 +1,20 @@
 Rails.application.routes.draw do
   
   namespace :admin do
-    get 'managements/show'
-    get 'managements/edit'
+    root to: 'managements#show'
+    resources :managements, only: [:edit]
+    resources :users, only: [:index, :show, :edit]
+    resources :posts, only: [:new, :index, :show,:edit]
   end
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
+  
+  scope module: :public do
+    root to: 'homes#top'
+    resources :bookmarks, only: [:index]
+    resources :posts, only: [:new, :index, :show, :edit]
+    resources :follows, only: [:index]
+    resources :users, only: [:index, :show, :edit]
   end
-  namespace :admin do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'bookmarks/index'
-  end
-  namespace :public do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :public do
-    get 'follows/index'
-  end
-  namespace :public do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :public do
-    get 'homes/top'
-  end
+  
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
