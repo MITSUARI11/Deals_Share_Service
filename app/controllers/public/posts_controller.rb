@@ -12,4 +12,12 @@ class Public::PostsController < ApplicationController
 
   def edit
   end
+  
+  private
+  
+ 
+  
 end
+
+
+

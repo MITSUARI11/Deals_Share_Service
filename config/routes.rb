@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   
+  devise_for :users, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+  
   namespace :admin do
     root to: 'managements#show'
     resources :managements, only: [:edit]
@@ -14,15 +23,6 @@ Rails.application.routes.draw do
     resources :follows, only: [:index]
     resources :users, only: [:index, :show, :edit]
   end
-  
-  devise_for :users, skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
-  
-  devise_for :admins, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
