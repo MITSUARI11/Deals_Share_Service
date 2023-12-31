@@ -1,2 +1,20 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+  <% if post.post_image.present? %>
+    <span><%= image_tag post.user.get_icon_image(100,100) %></span>
+    <span><%= post.user.user_name %></span>
+    <span><%= post.shop_genre %></span>
+    <span><%= post.shop_name %></span>
+    <span><%= post.address %></span>
+    <span><%= image_tag post.post_image, size: "200×200" %></span>
+    <span><%= post.posting_text %></span>
+  <% else %>
+    <span><%= post.user.icon_image %></span>
+    <span><%= post.user.user_name %></span>
+    <span><%= post.shop_genre %></span>
+    <span><%= post.shop_name %></span>
+    <span><%= post.address %></span>
+    <span><%= post.posting_text %></span>
+  <% end %>
+<% end %>

@@ -1,4 +1,15 @@
 ja:
+  enums:
+    post:
+      shop_genre:
+        food: "グルメ"
+        apparel: "アパレル"
+        beauty: "美容"
+        entertainment: "娯楽"
+        leisure: "レジャー"
+        hotel: "宿泊"
+        real_estate: "不動産"
+        besides: "その他"
   activerecord:
     errors:
       messages:

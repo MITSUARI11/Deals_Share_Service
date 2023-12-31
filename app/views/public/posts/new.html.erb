@@ -1,2 +1,32 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<h1>投稿</h1>
+
+<!--投稿フォーム-->
+<%= form_with model: @post do |f| %>
+  <p>ジャンル</p>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(0) %>
+    <%= f.label :shop_genres_food, Post.shop_genres_i18n[:food] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(1) %>
+    <%= f.label :shop_genres_apparel, Post.shop_genres_i18n[:apparel] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(2) %>
+    <%= f.label :shop_genres_beauty, Post.shop_genres_i18n[:beauty] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(3) %>
+    <%= f.label :shop_genres_entertainment, Post.shop_genres_i18n[:entertainment] %></br>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(4) %>
+    <%= f.label :shop_genres_leisure, Post.shop_genres_i18n[:leisure] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(5) %>
+    <%= f.label :shop_genres_hotel, Post.shop_genres_i18n[:hotel] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(6) %>
+    <%= f.label :shop_genres_real_estate, Post.shop_genres_i18n[:real_estate] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(7) %>
+    <%= f.label :shop_genres_besides, Post.shop_genres_i18n[:besides] %>
+  <p>店名</p>
+    <%= f.text_field :shop_name %>
+  <p>住所</p>
+    <%= f.text_field :address %>
+  <p>画像</p>
+    <%= f.file_field :post_image, accept: "image/*" %>
+  <p>テキスト</p>
+    <%= f.text_area :posting_text %>
+  <%= f.submit '投稿' %>
+<% end %>
+
