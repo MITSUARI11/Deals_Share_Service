@@ -1,10 +1,12 @@
-<h1>ユーザーページ</h1>
+<h1>マイページ</h1>
 
 <!--ユーザー情報-->
 <div>
   <span><%= image_tag @user.get_icon_image(100, 100) %></span>
   <span><%= @user.user_name %></span>
   <span><%= @user.profile %></span>
+  <span><%= link_to "ユーザー情報編集", edit_user_path(@user.id), class: "btn btn-outline-primary" %></span>
+  
 </div>
 
 <!--ユーザーの投稿情報-->
@@ -12,15 +14,13 @@
 <div>
   <% @posts.each do |post| %>
     <% if post.post_image.present? %>
-      <span><%= image_tag post.user.get_icon_image(100,100) %></span>
-      <span><%= post.user.user_name %></span>
       <span><%= post.shop_genre_i18n %></span>
       <span><%= post.shop_name %></span>
       <span><%= post.address %></span>
       <span><%= image_tag post.post_image, size: "200×200" %></span>
       <span><%= post.posting_text %></span>
     <% else %>
-      <span><%= post.user.icon_image %></span>
+      
       <span><%= post.user.user_name %></span>
       <span><%= post.shop_genre_i18n %></span>
       <span><%= post.shop_name %></span>
@@ -29,5 +29,4 @@
     <% end %>
   <% end %>
 </div>
-
 

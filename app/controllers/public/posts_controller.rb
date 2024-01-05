@@ -20,9 +20,13 @@ class Public::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def edit
+    user
+    
   end
   
   private

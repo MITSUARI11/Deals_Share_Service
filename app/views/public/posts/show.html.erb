@@ -1,2 +1,26 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+
+<!--ユーザー情報-->
+<div>
+  <span><%= image_tag @user.get_icon_image(100,100) %></span> 
+  <span><%= @user.user_name %></span>
+</div>
+
+<!--投稿詳細-->
+<div>
+  <% if @post.post_image.present? %>
+    <span><%= @post.shop_genre_i18n %></span>
+    <span><%= @post.shop_name %></span>
+    <span><%= @post.address %></span>
+    <span><%= image_tag @post.post_image, size: "200×200" %></span>
+    <span><%= @post.posting_text %></span>
+  <% else %>
+    <span><%= @post.shop_genre_i18n %></span>
+    <span><%= @post.shop_name %></span>
+    <span><%= @post.address %></span>
+    <span><%= @post.posting_text %></span>
+  <% end %>
+</div>
+
+
+
