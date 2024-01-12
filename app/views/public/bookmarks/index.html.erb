@@ -1,2 +1,29 @@
-<h1>Public::Bookmarks#index</h1>
-<p>Find me in app/views/public/bookmarks/index.html.erb</p>
+<h1>ブックマーク一覧</h1>
+
+<% @bookmarks.each do |bookmark| %>
+  <% if bookmark.post.post_image.present? %>
+    <div>
+      <%= link_to post_path(bookmark.post.id) do %>
+        <span><%= image_tag bookmark.user.get_icon_image(100,100) %></span>
+        <span><%= bookmark.user.user_name %></span>
+        <span><%= bookmark.post.shop_genre_i18n %></span>
+        <span><%= bookmark.post.shop_name %></span>
+        <span><%= bookmark.post.address %></span>
+        <span><%= image_tag bookmark.post.post_image, size: "200×200" %></span>
+        <span><%= bookmark.post.posting_text %></span>
+      <% end %>
+    </div>
+  <% else %>
+    <div>
+      <%= link_to post_path(bookmark.post.id) do %>
+        <span><%= image_tag bookmark.user.get_icon_image(100,100) %></span>
+        <span><%= bookmark.user.user_name %></span>
+        <span><%= bookmark.post.shop_genre_i18n %></span>
+        <span><%= bookmark.post.shop_name %></span>
+        <span><%= bookmark.post.address %></span>
+        <span><%= bookmark.post.posting_text %></span>
+      <% end %>
+    </div>
+    
+  <% end %>
+<% end %>

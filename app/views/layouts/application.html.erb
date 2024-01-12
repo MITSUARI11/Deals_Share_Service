@@ -35,7 +35,7 @@
                 <li class="nav-item"><%= link_to "マイページ", users_my_page_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
                 <li class="nav-item"><%= link_to "ユーザー一覧", users_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
                 <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
-                <li class="nav-item"><%= link_to "ブックマーク", bookmarks_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ブックマーク", post_bookmarks_path(current_user), class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
                 <li class="nav-item"><%= link_to "フォロー一覧", follows_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
               <% else %>

@@ -22,5 +22,45 @@
   <% end %>
 </div>
 
+<!--ブックマーク-->
+<div>
+  <% if @post.bookmarked_by?(current_user) %>
+    <p>
+      <%= link_to post_bookmark_path(@post), method: :delete do %>
+        <i class="fa-solid fa-bookmark">ブックマーク</i>
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to post_bookmarks_path(@post), method: :post do %>
+        <i class="fa-regular fa-bookmark">ブックマーク</i>
+      <% end %>
+    </p>
+  <% end %>
+</div>
+
+<!--コメント機能-->
+<div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '4', placeholder: "コメント" %>
+    <%= f.submit "送信", class: "btn btn-outline-primary" %>
+  <% end %>
+</div>
+
+
+<!--コメント欄-->
+<div>
+  <% @post.comments.each do |comment| %>
+    <p><%= image_tag @user.get_icon_image(100,100) %></p>
+    <span><%= @user.user_name %></span>
+    <spna><%= comment.comment %></spna>
+    
+    <% if comment.user == current_user %>
+      <%= link_to "コメント削除", post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
+    
+  <% end %>
+</div>
+
 
 
