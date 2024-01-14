@@ -6,6 +6,13 @@
   <span><%= @user.user_name %></span>
 </div>
 
+<!--編集ページ-->
+<div>
+  <% if @user == current_user %> 
+    <span><%= link_to "編集ページ", edit_post_path, class: "btn btn-outline-primary" %></span>
+  <% end %>
+</div>
+
 <!--投稿詳細-->
 <div>
   <% if @post.post_image.present? %>

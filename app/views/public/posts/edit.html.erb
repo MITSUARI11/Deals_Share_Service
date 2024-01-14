@@ -1,2 +1,45 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<h1>投稿編集</h1>
+
+<!--削除-->
+<div>
+  <% if @user == current_user %> 
+    <span><%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-primary" %></span>
+  <% end %>
+</div>
+
+<!--編集フォーム-->
+<%= form_with model: @post do |f| %>
+  <p>ジャンル</p>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(0) %>
+    <%= f.label :shop_genres_food, Post.shop_genres_i18n[:food] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(1) %>
+    <%= f.label :shop_genres_apparel, Post.shop_genres_i18n[:apparel] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(2) %>
+    <%= f.label :shop_genres_beauty, Post.shop_genres_i18n[:beauty] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(3) %>
+    <%= f.label :shop_genres_entertainment, Post.shop_genres_i18n[:entertainment] %></br>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(4) %>
+    <%= f.label :shop_genres_leisure, Post.shop_genres_i18n[:leisure] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(5) %>
+    <%= f.label :shop_genres_hotel, Post.shop_genres_i18n[:hotel] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(6) %>
+    <%= f.label :shop_genres_real_estate, Post.shop_genres_i18n[:real_estate] %>
+    <%= f.radio_button :shop_genre, Post.shop_genres.key(7) %>
+    <%= f.label :shop_genres_besides, Post.shop_genres_i18n[:besides] %>
+  <p>店名</p>
+    <%= f.text_field :shop_name %>
+  <p>住所</p>
+    <%= f.text_field :address %>
+  <p>画像</p>
+    <%= f.file_field :post_image, accept: "image/*" %>
+  <p>テキスト</p>
+    <%= f.text_area :posting_text %>
+  <%= f.submit '保存する' %>
+<% end %>
+
+
+
+
+
+
+
