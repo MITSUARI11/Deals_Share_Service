@@ -7,6 +7,28 @@
   <span><%= @user.profile %></span>
 </div>
 
+<!--フォロー-->
+<div>
+  <% if current_user != @user %>
+    <% if current_user.following?(@user) %>
+      <p>
+        <%= link_to user_follow_path(@user.id), method: :delete do %>
+          <span class="btn btn-outline-primary">フォローを外す</span>
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to user_follows_path(@user.id), method: :post do %>
+          <spam class="btn btn-outline-primary">フォローする</spam>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
 <!--ユーザーの投稿情報-->
 
 <div>

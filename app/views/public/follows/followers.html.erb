@@ -1,4 +1,4 @@
-<h1>ユーザー一覧</h1>
+<h1>フォロワー一覧</h1>
 
 <% @users.each do |user| %>
   <div>
@@ -10,3 +10,4 @@
 <% end %>
 
 
+<% if @users.exists? %>

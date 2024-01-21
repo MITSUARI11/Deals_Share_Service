@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
+  has_many :users, through: :bookmarks
   has_many :comments, dependent: :destroy
+  has_many :users, through: :comments
   
   validates :shop_genre, presence: true
   validates :shop_name, presence: true

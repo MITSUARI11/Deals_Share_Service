@@ -6,7 +6,15 @@ class User < ApplicationRecord
   
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :posts, through: :comments
   has_many :bookmarks, dependent: :destroy
+  has_many :posts, through: :bookmarks
+  has_many :active_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_follows, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
+  has_many :followers, through: :passive_follows, source: :follower
+  has_many :followings, through: :active_follows, source: :followee
+  
+  
   
   has_one_attached :icon_image
   
@@ -18,4 +26,16 @@ class User < ApplicationRecord
     icon_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  def follow(user)
+    active_follows.create(followee_id: user.id)
+  end
+  
+  def unfollow(user)
+    active_follows.find_by(followee_id: user.id).destroy
+  end
+  
+  def following?(user)
+    followings.include?(user)
+  end
+
 end
