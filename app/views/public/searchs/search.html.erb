@@ -1,0 +1,27 @@
+<h1>検索結果</h1>
+
+<!--ユーザー検索結果-->
+<% if @model == 'User' %>
+	<% @records.each do |user| %>
+	<div>
+	  <%= user.user_name %>
+	</div>
+	<% end %>
+<% end %>
+	
+<!--投稿検索結果-->
+<% if @model == "Post" %>
+  <% if @result.present? %>
+    <% @result.each do |post| %>
+      <div>
+        <p>店舗名</p>
+        <p><%= post.shop_name %></p>
+        <p>住所</p>
+        <p><%= post.address %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>検索結果はありませんでした</p>
+  <% end %>
+<% end %>	
+	

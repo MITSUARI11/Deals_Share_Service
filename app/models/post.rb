@@ -19,5 +19,6 @@ class Post < ApplicationRecord
     bookmarks.exists?(user_id: user.id)
   end
   
-  
+  # 検索機能
+  scope :search_by_column, ->(column, text) { where("#{column} LIKE ?", "%#{text}%") }
 end

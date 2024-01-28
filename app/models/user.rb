@@ -26,6 +26,7 @@ class User < ApplicationRecord
     icon_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  # フォロー機能
   def follow(user)
     active_follows.create(followee_id: user.id)
   end
@@ -36,6 +37,22 @@ class User < ApplicationRecord
   
   def following?(user)
     followings.include?(user)
+  end
+  
+  
+  # 検索機能
+  def self.search_for(content, method)
+    if method == "perfect"
+      User.where(user_name: content)
+    elsif method == "forward"
+      User.where("user_name LIKE ?", content + "%")
+    elsif method == "backward"
+      User.where("user_name LIKE ?", "%" + content)
+    elsif search == "partial_match"
+      User.where("user_name LIKE ?", "%" + content + "%")
+    else
+      User.all
+    end
   end
 
 end
