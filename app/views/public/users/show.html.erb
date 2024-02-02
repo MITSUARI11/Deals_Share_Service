@@ -1,54 +1,89 @@
-<h1>ユーザーページ</h1>
+
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">ユーザーページ</h1>
 
 <!--ユーザー情報-->
-<div>
-  <span><%= image_tag @user.get_icon_image(100, 100) %></span>
-  <span><%= @user.user_name %></span>
-  <span><%= @user.profile %></span>
-</div>
-
-<!--フォロー-->
-<div>
-  <% if current_user != @user %>
-    <% if current_user.following?(@user) %>
-      <p>
-        <%= link_to user_follow_path(@user.id), method: :delete do %>
-          <span class="btn btn-outline-primary">フォローを外す</span>
+  <div class="row">
+    <span class="col-2"><%= image_tag @user.get_icon_image(100, 100) %></span>
+  </div>
+  <table style="width: 100%;">
+    <tr>
+      <td class="m-1 border-bottom font-weight-bold" style="width: 100px;">ユーザー名</td>
+      <td class="m-1 border-bottom"><%= @user.user_name %></td>
+      <td class="text-right" style="width: 200px;">
+        <!--フォロー-->
+        <% if current_user != @user %>
+          <% if current_user.following?(@user) %>
+            <p>
+              <%= link_to user_follow_path(@user.id), method: :delete do %>
+                <span class="btn btn-primary">フォローを外す</span>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to user_follows_path(@user.id), method: :post do %>
+                <spam class="btn btn-outline-primary">フォローする</spam>
+              <% end %>
+            </p>
+          <% end %>
         <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to user_follows_path(@user.id), method: :post do %>
-          <spam class="btn btn-outline-primary">フォローする</spam>
-        <% end %>
-      </p>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <p class="my-2 border-bottom font-weight-bold" style="width: 100px;">プロフィール</p>
+    <p class="p-1 border" style="width: auto; height: 100px;"><%= @user.profile %></p>
+  </div>
+  <div>
+    <% @posts.each do |post| %>
+      <% if post.post_image.present? %>
+        <div class="m-1 border border-dark">
+          <%= link_to post_path(post.id), style: "color: black; text-decoration: none;" do %>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">ショップジャンル</p>
+              <p class="m-1"><%= post.shop_genre_i18n %></p>
+            </div>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">店舗名</p>
+              <p class="m-1"><%= post.shop_name %></p>
+            </div>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">住所</p>
+              <p class="m-1"><%= post.address %></p>
+            </div>
+            <div>
+              <p class="text-center"><%= image_tag post.post_image, size: "200×200" %></p>
+            </div>
+            <div>
+              <p class="m-1 font-weight-bold" style="width: 150px;">テキスト</p>
+              <p class="mx-1 p-1 border" style="width: auto; height: 100px;"><%= post.posting_text %></p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="m-1 border border-dark">
+          <%= link_to post_path(post.id), style: "color: black; text-decoration: none;" do %>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">ショップジャンル</p>
+              <p class="m-1"><%= post.shop_genre_i18n %></p>
+            </div>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">店舗名</p>
+              <p class="m-1"><%= post.shop_name %></p>
+            </div>
+            <div class="d-flex">
+              <p class="m-1 font-weight-bold" style="width: 150px;">住所</p>
+              <p class="m-1"><%= post.address %></p>
+            </div>
+            <div>
+              <p class="m-1 font-weight-bold" style="width: 150px;">テキスト</p>
+              <p class="mx-1 p-1 border" style="width: auto; height: 100px;"><%= post.posting_text %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-
-
-
-
-<!--ユーザーの投稿情報-->
-<div>
-  <% @posts.each do |post| %>
-    <% if post.post_image.present? %>
-      <span><%= image_tag post.user.get_icon_image(100,100) %></span>
-      <span><%= post.user.user_name %></span>
-      <span><%= post.shop_genre_i18n %></span>
-      <span><%= post.shop_name %></span>
-      <span><%= post.address %></span>
-      <span><%= image_tag post.post_image, size: "200×200" %></span>
-      <span><%= post.posting_text %></span>
-    <% else %>
-      <span><%= post.user.icon_image %></span>
-      <span><%= post.user.user_name %></span>
-      <span><%= post.shop_genre_i18n %></span>
-      <span><%= post.shop_name %></span>
-      <span><%= post.address %></span>
-      <span><%= post.posting_text %></span>
-    <% end %>
-  <% end %>
-</div>
-
-
+  
+  

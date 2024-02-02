@@ -1,73 +1,97 @@
-<h1>投稿詳細</h1>
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">投稿詳細</h1>
+      
+      <!--ユーザー情報-->
+      <div>
+        <span><%= image_tag @user.get_icon_image(100,100) %></span> 
+        <span><%= @user.user_name %></span>
+      </div>
+      
+      <!--編集ページ-->
+      <div>
+        <% if @user == current_user %> 
+          <span><%= link_to "編集ページ", edit_post_path, class: "btn btn-outline-primary" %></span>
+        <% end %>
+      </div>
+      
+      <!--投稿詳細-->
+      <div>
+        <% if @post.post_image.present? %>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">ショップジャンル</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.shop_genre_i18n %></span>
+          </div>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">店舗名</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.shop_name %></span>
+          </div>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">住所</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.address %></span>
+          </div>
+          <span><%= image_tag @post.post_image, size: "200×200" %></span>
+          <span><%= @post.posting_text %></span>
+          
+        <% else %>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">ショップジャンル</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.shop_genre_i18n %></span>
+          </div>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">店舗名</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.shop_name %></span>
+          </div>
+          <div style="display: flex;">
+            <h5 class="p-2 g-col-6" style="display: inline;">住所</h5>
+            <span class="p-2 g-col-6" style="display: inline;"><%= @post.address %></span>
+          </div>
 
-<!--ユーザー情報-->
-<div>
-  <span><%= image_tag @user.get_icon_image(100,100) %></span> 
-  <span><%= @user.user_name %></span>
+          <span><%= @post.posting_text %></span>
+        <% end %>
+      </div>
+      
+      <!--ブックマーク-->
+      <div>
+        <% if @post.bookmarked_by?(current_user) %>
+          <p>
+            <%= link_to post_bookmark_path(@post), method: :delete do %>
+              <i class="fa-solid fa-bookmark">ブックマーク</i>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_bookmarks_path(@post), method: :post do %>
+              <i class="fa-regular fa-bookmark">ブックマーク</i>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+      
+      <!--コメント機能-->
+      <div>
+        <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :comment, rows: '4', placeholder: "コメント" %>
+          <%= f.submit "送信", class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+      
+      
+      <!--コメント欄-->
+      <div>
+        <% @post.comments.each do |comment| %>
+          <p><%= image_tag @user.get_icon_image(100,100) %></p>
+          <span><%= @user.user_name %></span>
+          <spna><%= comment.comment %></spna>
+          
+          <% if comment.user == current_user %>
+            <%= link_to "コメント削除", post_comment_path(comment.post, comment), method: :delete %>
+          <% end %>
+          
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
 </div>
-
-<!--編集ページ-->
-<div>
-  <% if @user == current_user %> 
-    <span><%= link_to "編集ページ", edit_post_path, class: "btn btn-outline-primary" %></span>
-  <% end %>
-</div>
-
-<!--投稿詳細-->
-<div>
-  <% if @post.post_image.present? %>
-    <span><%= @post.shop_genre_i18n %></span>
-    <span><%= @post.shop_name %></span>
-    <span><%= @post.address %></span>
-    <span><%= image_tag @post.post_image, size: "200×200" %></span>
-    <span><%= @post.posting_text %></span>
-  <% else %>
-    <span><%= @post.shop_genre_i18n %></span>
-    <span><%= @post.shop_name %></span>
-    <span><%= @post.address %></span>
-    <span><%= @post.posting_text %></span>
-  <% end %>
-</div>
-
-<!--ブックマーク-->
-<div>
-  <% if @post.bookmarked_by?(current_user) %>
-    <p>
-      <%= link_to post_bookmark_path(@post), method: :delete do %>
-        <i class="fa-solid fa-bookmark">ブックマーク</i>
-      <% end %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to post_bookmarks_path(@post), method: :post do %>
-        <i class="fa-regular fa-bookmark">ブックマーク</i>
-      <% end %>
-    </p>
-  <% end %>
-</div>
-
-<!--コメント機能-->
-<div>
-  <%= form_with model: [@post, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '4', placeholder: "コメント" %>
-    <%= f.submit "送信", class: "btn btn-outline-primary" %>
-  <% end %>
-</div>
-
-
-<!--コメント欄-->
-<div>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag @user.get_icon_image(100,100) %></p>
-    <span><%= @user.user_name %></span>
-    <spna><%= comment.comment %></spna>
-    
-    <% if comment.user == current_user %>
-      <%= link_to "コメント削除", post_comment_path(comment.post, comment), method: :delete %>
-    <% end %>
-    
-  <% end %>
-</div>
-
-
-
+      
+      

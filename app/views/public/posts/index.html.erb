@@ -1,43 +1,73 @@
-<h1>投稿一覧</h1>
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">投稿一覧</h1>
 
-<!--検索フォーム-->
-<% if user_signed_in? %>
-  <div>
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.hidden_field :model, :value => "Post" %>
-      <%= f.text_field :content %>
-      <%= f.select :search_column, options_for_select({ "店舗名" => "shop_name", "住所" => "address", "投稿文" => "posting_text"}) %>
-      <%= f.submit "検索" %>
-    <% end %>
-  </div>
-<% end %>
-
+  <!--検索フォーム-->
+  <% if user_signed_in? %>
+    <div style="text-align: center">
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.hidden_field :model, :value => "Post" %>
+        <%= f.text_field :content %>
+        <%= f.select :search_column, options_for_select({ "店舗名" => "shop_name", "住所" => "address", "投稿文" => "posting_text"}) %>
+        <%= f.submit "検索", class: "btn btn-info" %>
+      <% end %>
+    </div>
+  <% end %>
 
 <!--投稿一覧-->
 <% @posts.each do |post| %>
   <% if post.post_image.present? %>
-    <div>
-      <%= link_to post_path(post.id) do %>
-        <span><%= image_tag post.user.get_icon_image(100,100) %></span>
-        <span><%= post.user.user_name %></span>
-        <span><%= post.shop_genre_i18n %></span>
-        <span><%= post.shop_name %></span>
-        <span><%= post.address %></span>
-        <span><%= image_tag post.post_image, size: "200×200" %></span>
-        <span><%= post.posting_text %></span>
+    <div class="m-1 border border-dark">
+      <%= link_to post_path(post.id), style: "color: black; text-decoration: none;" do %>
+        <div class="d-flex border-bottom border-secondary align-items-center">
+          <p class="m-1"><%= image_tag post.user.get_icon_image(100,100) %></p>
+          <h4 class="m-1"><%= post.user.user_name %></h4>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">ショップジャンル</p>
+          <p class="m-1"><%= post.shop_genre_i18n %></p>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">店舗名</p>
+          <p class="m-1"><%= post.shop_name %></p>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">住所</p>
+          <p class="m-1"><%= post.address %></p>
+        </div>
+        <div>
+          <p class="text-center"><%= image_tag post.post_image, size: "200×200" %></p>
+        </div>
+        <div>
+          <p class="m-1 font-weight-bold" style="width: 150px;">テキスト</p>
+          <p class="mx-1 p-1 border" style="width: auto; height: 100px;"><%= post.posting_text %></p>
+        </div>
       <% end %>
     </div>
   <% else %>
-    <div>
-      <%= link_to post_path(post.id) do %>
-        <span><%= image_tag post.user.get_icon_image(100,100) %></span>
-        <span><%= post.user.user_name %></span>
-        <span><%= post.shop_genre_i18n %></span>
-        <span><%= post.shop_name %></span>
-        <span><%= post.address %></span>
-        <span><%= post.posting_text %></span>
+    <div class="m-1 border border-dark">
+      <%= link_to post_path(post.id), style: "color: black; text-decoration: none;" do %>
+        <div class="d-flex border-bottom border-secondary align-items-center">
+          <p class="m-1"><%= image_tag post.user.get_icon_image(100,100) %></p>
+          <h4 class="m-1"><%= post.user.user_name %></h4>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">ショップジャンル</p>
+          <p class="m-1"><%= post.shop_genre_i18n %></p>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">店舗名</p>
+          <p class="m-1"><%= post.shop_name %></p>
+        </div>
+        <div class="d-flex">
+          <p class="m-1 font-weight-bold" style="width: 150px;">住所</p>
+          <p class="m-1"><%= post.address %></p>
+        </div>
+        <div>
+          <p class="m-1 font-weight-bold" style="width: 150px;">テキスト</p>
+          <p class="mx-1 p-1 border" style="width: auto; height: 100px;"><%= post.posting_text %></p>
+        </div>
       <% end %>
-    </div>
-    
+    </div>  
   <% end %>
+  
 <% end %>

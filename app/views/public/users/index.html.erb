@@ -1,25 +1,30 @@
-<h1>ユーザー一覧</h1>
-<!--ユーザー検索機能-->
-<% if user_signed_in? %>
-  <div>
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.hidden_field :model, :value => "User" %>
-      <%= f.text_field :content %>
-      <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partiall_match" }) %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-<% end %>
-
-
-<!--ユーザー一覧-->
-<% @users.each do |user| %>
-  <div>
-    <%= link_to user_path(user.id) do %>
-      <span><%= image_tag user.get_icon_image(100, 100) %></span>
-      <span><%= user.user_name %></span>
-    <% end %>
-  </div>
-<% end %>
-
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">ユーザー一覧</h1>
+      
+  <!--ユーザー検索機能-->
+  <% if user_signed_in? %>
+    <div style="text-align: center">
+      <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.hidden_field :model, :value => "User" %>
+        <%= f.text_field :content %>
+        <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partiall_match" }) %>
+        <%= f.submit "検索", class: "btn btn-info" %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <!--ユーザー一覧-->
+  <% @users.each do |user| %>
+    <div class="border">
+      <%= link_to user_path(user.id), style: "color: black; text-decoration: none;" do %>
+      <table>
+        <tr>
+          <td><%= image_tag user.get_icon_image(100, 100) %></td>
+          <td><%= user.user_name %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
