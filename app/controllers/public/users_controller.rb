@@ -2,17 +2,17 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(20)
   end
   
   def my_page
     @user = current_user
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(5)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(5)
   end
 
   def edit

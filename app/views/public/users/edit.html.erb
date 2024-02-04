@@ -1,26 +1,31 @@
-<h1>プロフィール編集</h1>
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">プロフィール編集</h1>
 
-<%= form_with model: @user do |f| %>
-  <div class="field">
-    <%= f.label :icon_image, "アイコン画像" %><br>
-    <%= f.file_field :image, accept: "image/*" %>
-  </div>
-          
-  <div class="field">
-    <%= f.label :user_name, "アカウント名" %><br>
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :profile, "プロフィール" %><br>
-    <%= f.text_area :profile %> 
-  </div>
-  
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-  
-  <%= f.submit "変更を保存" %>
 
-<% end %>
+  <%= form_with model: @user do |f| %>
+  
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :user_name, "アカウント名" %></p>
+      <p class="m-1"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :icon_image, "アイコン画像" %></p>
+      <p class="m-1"><%= f.file_field :image, accept: "image/*" %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :profile, "プロフィール" %></p>
+      <p class="m-1"><%= f.text_area :profile %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :email, "メールアドレス" %></p>
+      <p class="m-1"><%= f.email_field :email, autocomplete: "email" %></p>
+    </div>
+  <div style="text-align: center">
+    <%= f.submit "変更を保存", class: "btn btn-success" %>
+  </div>
+  <% end %>
+
+</div>

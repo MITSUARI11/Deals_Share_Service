@@ -35,7 +35,7 @@
           <p class="m-1"><%= post.address %></p>
         </div>
         <div>
-          <p class="text-center"><%= image_tag post.post_image, size: "200×200" %></p>
+          <p class="m-1 text-center"><%= image_tag post.post_image, size: "500x500" %></p>
         </div>
         <div>
           <p class="m-1 font-weight-bold" style="width: 150px;">テキスト</p>
@@ -69,5 +69,10 @@
       <% end %>
     </div>  
   <% end %>
+  
+  <!--ページネーション-->
+  <div class="p-1">
+    <%= paginate @posts %>
+  </div>
   
 <% end %>

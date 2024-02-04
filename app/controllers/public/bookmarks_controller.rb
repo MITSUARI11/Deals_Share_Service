@@ -2,7 +2,7 @@ class Public::BookmarksController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @bookmarks = Bookmark.all
+    @bookmarks = Bookmark.page(params[:page]).per(15)
   end
   
   def create
