@@ -44,7 +44,6 @@ class Public::SessionsController < Devise::SessionsController
     if @user.valid_password?(params[:user][:password]) && (@user.is_active == true)
       return
     else
-      flash[:notice] = "ログインしようとアカウントは停止しています"
       redirect_to new_user_registration_path
     end
   end

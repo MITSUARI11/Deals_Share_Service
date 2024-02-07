@@ -35,6 +35,6 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-* アイコンとして以下を使用。
-	* Font Awesome  URL => https://fontawesome.com/
+* フリーイラスト素材として以下を使用。
+	* いらすとや  URL => https://www.irasutoya.com/
 

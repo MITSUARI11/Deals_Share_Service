@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  validates :user_name, presence: true
+  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :comment_posts, through: :comments, source: :post
@@ -14,14 +16,11 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_follows, source: :follower
   has_many :followings, through: :active_follows, source: :followee
   
-  
-  
-  has_one_attached :icon_image
-  
   def active?
     is_active
   end
   
+  has_one_attached :icon_image
   def get_icon_image(width, height)
     unless icon_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

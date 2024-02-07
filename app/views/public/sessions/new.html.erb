@@ -3,18 +3,14 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center rounded px-0 my-5">
       <h2>ログイン</h2>
         <%= form_with model: @user, url: user_session_path do |f| %>
-          <div class="field">
-            <%= f.label :user_name, "アカウント名" %><br>
-            <%= f.text_field :User_name, autofocus: true, autocomplete: "user_name" %>
-          </div>
         
           <div class="field">
-            <%= f.label :email %><br />
+            <span class="m-1 font-weight-bold"><%= f.label :email %></span><br>
             <%= f.email_field :email, autocomplete: "email" %>
           </div>
         
           <div class="field">
-            <%= f.label :password %><br />
+            <span class="m-1 font-weight-bold"><%= f.label :password %></span><br>
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
         
