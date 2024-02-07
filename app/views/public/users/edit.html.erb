@@ -3,7 +3,6 @@
 
 
   <%= form_with model: @user do |f| %>
-  
     <div class="field d-flex">
       <p class="m-1 font-weight-bold"><%= f.label :user_name, "アカウント名" %></p>
       <p class="m-1"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></p>

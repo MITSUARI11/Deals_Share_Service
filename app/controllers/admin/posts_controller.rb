@@ -5,6 +5,12 @@ class Admin::PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.page(params[:page]).per(15)
+  end
+  
+  def show
+    @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def edit

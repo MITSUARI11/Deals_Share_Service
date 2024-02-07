@@ -9,12 +9,14 @@ class Public::SearchsController < ApplicationController
     if @model == "User"
       @records = User.search_for(@content, @method)
     end
+    
     # 投稿検索
     column = params[:search_column]
     text = params[:content]
     if @model == "Post"
       @result = Post.search_by_column(column, text)
     end
+
   end
   
 end

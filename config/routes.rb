@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    root to: 'managements#show'
+    root to: 'homes#top'
     resources :managements, only: [:edit]
-    resources :users, only: [:index, :show, :edit]
+    resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:new, :index, :show,:edit]
   end
   
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     get 'users/my_page'
+    patch 'users/quit'
     resources :users, only: [:index, :show, :edit, :update] do
       resources :follows, only: [:create, :destroy]
         get "followings" => "follows#followings", as: "followings"

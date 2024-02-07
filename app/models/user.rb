@@ -18,6 +18,10 @@ class User < ApplicationRecord
   
   has_one_attached :icon_image
   
+  def active?
+    is_active
+  end
+  
   def get_icon_image(width, height)
     unless icon_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -54,5 +58,7 @@ class User < ApplicationRecord
       User.all
     end
   end
+
+ 
 
 end
