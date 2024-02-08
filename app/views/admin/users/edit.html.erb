@@ -1,5 +1,5 @@
 <div class="mx-auto" style="width: 600px;">
-  <h1 class="text-center"><%= @user.user_name %>さんの会員情報編集</h1>
+  <h1 class="text-center"><%= @user.user_name %>さんのユーザー情報編集</h1>
   
   <div class="d-flex">
     <p class="m-1 font-weight-bold">アカウント名</p>
@@ -24,11 +24,11 @@
   
   <%= form_with model: @user, url: admin_user_path(@user) do |f| %>
     <div class="field d-flex">
-      <p class="m-1 font-weight-bold">会員ステータス</p>
+      <p class="m-1 font-weight-bold">ユーザーステータス</p>
       <p class="m-1"><%= f.radio_button :is_active, "true" %></p>
       <p class="m-1"><%= f.label :is_active, "有効" %></p>
       <p class="m-1"><%= f.radio_button :is_active, "false" %></p>
-      <p class="m-1"><%= f.label :is_active, "退会" %></p>
+      <p class="m-1"><%= f.label :is_active, "無効" %></p>
     </div>
     <%= f.submit '変更を保存', class: 'btn btn-danger' %>
   <% end %>
