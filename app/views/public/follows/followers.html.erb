@@ -1,0 +1,13 @@
+<h1>フォロワー一覧</h1>
+
+<% @users.each do |user| %>
+  <div>
+    <%= link_to user_path(user.id) do %>
+      <span><%= image_tag user.get_icon_image(100, 100) %></span>
+      <span><%= user.user_name %></span>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if @users.exists? %>

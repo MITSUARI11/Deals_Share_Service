@@ -1,0 +1,22 @@
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">ユーザー一覧</h1>
+
+<!--ユーザー一覧-->
+<% @users.each do |user| %>
+  <div class="border">
+    <%= link_to admin_user_path(user.id), style: "color: black; text-decoration: none;" do %>
+      <table>
+        <tr>
+          <td><%= image_tag user.get_icon_image(100, 100) %></td>
+          <td><%= user.user_name %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+<% end %>
+
+  <div class="p-1">
+    <%= paginate @users %>
+  </div>
+  
+</div>
