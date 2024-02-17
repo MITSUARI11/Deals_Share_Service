@@ -1,0 +1,30 @@
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">プロフィール編集</h1>
+
+
+  <%= form_with model: @user do |f| %>
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :user_name, "アカウント名" %></p>
+      <p class="m-1"><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :icon_image, "アイコン画像" %></p>
+      <p class="m-1"><%= f.file_field :icon_image, accept: "image/*" %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :profile, "プロフィール" %></p>
+      <p class="m-1"><%= f.text_area :profile %></p>
+    </div>
+    
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold"><%= f.label :email, "メールアドレス" %></p>
+      <p class="m-1"><%= f.email_field :email, autocomplete: "email" %></p>
+    </div>
+  <div style="text-align: center">
+    <%= f.submit "変更を保存", class: "btn btn-success" %>
+  </div>
+  <% end %>
+
+</div>

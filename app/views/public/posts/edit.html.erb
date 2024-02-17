@@ -1,0 +1,75 @@
+<div class="mx-auto" style="width: 600px;">
+  <h1 class="text-center">投稿編集</h1>
+
+  <!--削除-->
+  <div class="text-right">
+    <% if @user == current_user %> 
+      <span><%= link_to "投稿を削除する", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></span>
+    <% end %>
+  </div>
+
+  <!--編集フォーム-->
+  <%= form_with model: @post do |f| %>
+    <p class="m-1 font-weight-bold">ジャンル</p>
+      <div class="d-flex">
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(0), class: "m-1 form-check-input", id: "food" %>
+          <%= f.label :shop_genres_food, Post.shop_genres_i18n[:food], class: "m-1", for: "food" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(1), class: "m-1 form-check-input", id: "apparel" %>
+          <%= f.label :shop_genres_apparel, Post.shop_genres_i18n[:apparel], class: "m-1", for: "apparel" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(2), class: "m-1 form-check-input", id: "beauty" %>
+          <%= f.label :shop_genres_beauty, Post.shop_genres_i18n[:beauty], class: "m-1", for: "beauty" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(3), class: "m-1 form-check-input", id: "entertainment" %>
+          <%= f.label :shop_genres_entertainment, Post.shop_genres_i18n[:entertainment], class: "m-1", for: "entertainment" %></br>
+        </p>
+      </div>
+      <div class="d-flex">
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(4), class: "m-1 form-check-input", id: "leisure" %>
+          <%= f.label :shop_genres_leisure, Post.shop_genres_i18n[:leisure], class: "m-1", for: "leisure" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(5), class: "m-1 form-check-input", id: "hotel" %>
+          <%= f.label :shop_genres_hotel, Post.shop_genres_i18n[:hotel], class: "m-1", for: "hotel" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(6), class: "m-1 form-check-input", id: "real_estate" %>
+          <%= f.label :shop_genres_real_estate, Post.shop_genres_i18n[:real_estate], class: "m-1", for: "real_estate" %>
+        </p>
+        <p class="p-1 m-1 form-check form-check-inline">
+          <%= f.radio_button :shop_genre, Post.shop_genres.key(7), class: "m-1 form-check-input", id: "desides" %>
+          <%= f.label :shop_genres_besides, Post.shop_genres_i18n[:besides], class: "m-1", for: "besides" %>
+        </p>
+      </div>
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold">店名</p>
+      <p class="m-1"><%= f.text_field :shop_name %></p>
+    </div>
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold">住所</p>
+      <p class="m-1"><%= f.text_field :address %></p>
+    </div>
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold">ショップ画像</p>
+      <p class="m-1"><%= f.file_field :post_image, accept: "image/*" %></p>
+    </div>
+    <div class="field d-flex">
+      <p class="m-1 font-weight-bold">テキスト</p>
+      <p class="m-1"><%= f.text_area :posting_text %></p>
+    </div>
+    <p class="text-center">
+      <%= f.submit '編集を保存する', class: "btn btn-success" %>
+    </p>
+  <% end %>
+</div>
+
+
+
+
+

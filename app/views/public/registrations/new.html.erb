@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="text-center">
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center rounded px-0 my-5">
+      <h2>新規会員登録</h2>
+        
+        <%= form_with model: @user, url: user_registration_path do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
+          
+          <div class="m-2 field">
+            <span class="m-1 font-weight-bold"><%= f.label :icon_image, "アイコン画像" %></span><br>
+            <%= f.file_field :icon_image, accept: "image/*" %><br>
+            <span>選択しなかった場合、自動的に設定されます</span>
+          </div>
+          
+          <div class="m-2 field">
+            <span class="m-1 font-weight-bold"><%= f.label :user_name, "アカウント名" %></span><br>
+            <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder: "必ず入力してください" %>
+          </div>
+          
+          <div class="m-2 field">
+            <span class="m-1 font-weight-bold"><%= f.label :profile, "プロフィール" %></span><br>
+            <%= f.text_area :profile %> 
+          </div>
+          
+          <div class="m-2 field">
+            <span class="m-1 font-weight-bold"><%= f.label :email, "メールアドレス" %></span><br>
+            <%= f.email_field :email, autocomplete: "email", placeholder: "必ず入力してください" %>
+          </div>
+        
+          <div class="m-2 field">
+            <span class="m-1 font-weight-bold"><%= f.label :password, "パスワード" %></span>
+            <% if @minimum_password_length %>
+            <em>（<%= @minimum_password_length %> 文字以上入力してください）</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "必ず入力してください" %>
+          </div>
+        
+          <div class="m-1 field">
+            <span class="m-1 font-weight-bold"><%= f.label :password_confirmation, "確認用パスワード" %></span><br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "必ず入力してください" %>
+          </div>
+        
+          <div class="m-1 actions">
+            <%= f.submit "会員登録", class: "btn btn-success"  %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

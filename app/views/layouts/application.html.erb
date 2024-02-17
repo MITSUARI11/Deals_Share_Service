@@ -5,12 +5,48 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/6be78560e7.js" crossorigin="anonymous"></script>
+    
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <ul class="navbar-nav flex-row">
+            <div class="d-flex float-left">
+              <li class="nav-item">
+                <h1>DealsShareService</h1>
+              </li>
+            </div>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <div class="d-flex justify-content-end">
+              <% if admin_signed_in? %>
+                <li class="nav-item"><%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %> </li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+              <% elsif user_signed_in? %>
+                <li class="nav-item"><%= link_to "投稿", new_post_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "マイページ", users_my_page_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ユーザー一覧", users_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ブックマーク", post_bookmarks_path(current_user), class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "フォロー", user_followings_path(current_user), class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+              <% else %>
+                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary", style: "list-style-type: none;" %></li>
+              <% end %>
+            </div>
+          </ul>
+        </div>
+      </nav>
+    </header>
+         
+    
     <%= yield %>
   </body>
 </html>
