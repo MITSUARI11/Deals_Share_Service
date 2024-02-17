@@ -90,8 +90,8 @@
   <div class="m-1 border border-dark">
     <% @post.comments.each do |comment| %>
       <div class="d-flex align-items-center">
-        <p class="m-1"><%= image_tag @user.get_icon_image(100,100) %></p>
-        <p class="m-1"><%= @user.user_name %></p>
+        <p class="m-1"><%= image_tag @comment_user.get_icon_image(100,100) %></p>
+        <p class="m-1"><%= @comment_user.user_name %></p>
       </div>
         <p class="m-1 border" style="width: auto; height: 100px;"><%= comment.comment %></p>
       <% if comment.user == current_user %>
