@@ -23,7 +23,7 @@
 * 新入荷商品やセール商品の宣伝をしたい時。
 ​
 ## 設計書
-　後ほど作成予定。
+　https://docs.google.com/spreadsheets/d/1EqIQT-7EJlpo3ss7Qy6Du1-qAJfRg4QMvrxT3ftN3HE/edit#gid=0
 ### 実装機能リストURL
 * https://docs.google.com/spreadsheets/d/1GVeVzbOXrSy0EWQC4kALy9gGFQNFODQdLDnO_A7wtbg/edit#gid=1898975908
 
