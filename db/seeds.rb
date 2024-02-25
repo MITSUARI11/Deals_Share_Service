@@ -9,21 +9,21 @@
 
 # ユーザー情報
 
-tanaka = User.find_or_create_by!(email: "tanaka@taro.com") do |user|
+tanaka = User.find_or_create_by!(email: "2tanaka@taro.com") do |user|
   user.user_name = "田中太郎"
   user.profile = "田中太郎です。会社員をしています。"
   user.password = "tarotanaka"
   user.icon_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/young_man.png"), filename:"young_man.png")
 end
 
-yamada = User.find_or_create_by!(email: "yamada@hanako.com") do |user|
+yamada = User.find_or_create_by!(email: "2yamada@hanako.com") do |user|
   user.user_name = "山田花子"
   user.profile = "山田花子です。Webデザイナーです。"
   user.password = "hanakoyamada"
   user.icon_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/woman.png"), filename:"woman.png")
 end
 
-apparel = User.find_or_create_by!(email: "apparel@shop.com") do |user|
+apparel = User.find_or_create_by!(email: "2apparel@shop.com") do |user|
   user.user_name = "【公式】アパレルショップ"
   user.profile = "東京都新宿区にあるアパレルショップです。"
   user.password = "shopapparel"
