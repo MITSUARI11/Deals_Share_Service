@@ -7,6 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+# 管理者ログイン
+
+Admin.find_or_create_by(id: 1) do |admin|
+  admin.email = "Ad@min.com"
+  admin.password = "admin_password"
+end
+
 # ユーザー情報
 
 tanaka = User.find_or_create_by!(email: "4tanaka@taro.com") do |user|
@@ -57,7 +64,9 @@ Post.find_or_create_by!(shop_name: "アパレルショップ") do |post|
   post.user = apparel
 end
 
-# 管理者ログイン
+
+
+
 #Admin.create!(
 #  email: "Ad@min",
 #  password: "aaaaaa"
